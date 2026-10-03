@@ -9,20 +9,5 @@ jobs:
       - name: Checkout Code
         uses: actions/checkout@v4
 
-      - name: Set up Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: '18'
-
-      - name: Set up JDK 17
-        uses: actions/setup-java@v4
-        with:
-          distribution: 'temurin'
-          java-version: '17'
-
-      - name: Build with Bubblewrap (PWABuilder CLI)
-        run: |
-          npm install -g @pwabuilder/pwabuilder-cli
-          # Create manifest and simple web wrapper
-          node -e 'fs.writeFileSync("manifest.json", JSON.stringify({name: "Calculator", short_name: "Calc", start_url: "index.html", display: "standalone"}))'
-          echo "Successfully prepared web assets"
+      - name: List files
+        run: ls -la
