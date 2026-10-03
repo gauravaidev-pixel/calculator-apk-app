@@ -30,13 +30,12 @@ jobs:
           cordova platform add android
           cp ../index.html www/index.html
           cordova build android --release
-          echo "=== FINDING APK ==="
-          find . -name "*.apk"
+          cp platforms/android/app/build/outputs/apk/release/app-release-unsigned.apk ../calculator.apk
 
       - name: Release APK with GitHub Release
         uses: ncipollo/release-action@v1
         with:
-          artifacts: "calc_app/myapp/platforms/android/app/build/outputs/apk/release/app-release-unsigned.apk,myapp/platforms/android/app/build/outputs/apk/release/app-release-unsigned.apk,**/app-release-unsigned.apk"
+          artifacts: "calculator.apk"
           token: ${{ secrets.GITHUB_TOKEN }}
           tag: v1.${{ github.run_number }}
           allowUpdates: true
