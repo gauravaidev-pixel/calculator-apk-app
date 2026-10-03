@@ -22,8 +22,11 @@ jobs:
           cordova create myapp com.calc.app Calculator
           cd myapp
           cordova platform add android
-          cp -r ../index.html www/index.html
+          cp ../index.html www/index.html
           cordova build android --release
+
+      - name: Find APK
+        run: find . -name "*.apk"
 
       - name: Upload APK
         uses: actions/upload-artifact@v4
