@@ -24,10 +24,10 @@ jobs:
 
       - name: Build Web App with Cordova
         run: |
-          npm install -g cordova
+          npm install -g cordova@10.0.0
           cordova create myapp com.calc.app Calculator
           cd myapp
-          cordova platform add android@11.0.0
+          cordova platform add android@9.1.0
           cp ../index.html www/index.html
           cordova build android --release
           cp platforms/android/app/build/outputs/apk/release/app-release-unsigned.apk ../calculator.apk
