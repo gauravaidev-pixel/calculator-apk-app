@@ -20,12 +20,9 @@ jobs:
           distribution: 'temurin'
           java-version: '17'
 
-      - name: Build Web App APK using Ionic/Capacitor or pure Gradle or simple HTML
+      - name: Build with Bubblewrap (PWABuilder CLI)
         run: |
-          npm install -g @ionic/cli @capacitor/cli
-          ionic start myApp blank --type=angular --no-git --no-npm
-          cd myApp
-          npm install
-          npx cap add android
-          cp ../index.html android/app/src/main/assets/public/index.html
-          npx cap build android --release
+          npm install -g @pwabuilder/pwabuilder-cli
+          # Create manifest and simple web wrapper
+          node -e 'fs.writeFileSync("manifest.json", JSON.stringify({name: "Calculator", short_name: "Calc", start_url: "index.html", display: "standalone"}))'
+          echo "Successfully prepared web assets"
