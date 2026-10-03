@@ -29,8 +29,11 @@ jobs:
           cp ../index.html www/index.html
           cordova build android --release
 
-      - name: Upload APK
-        uses: actions/upload-artifact@v4
+      - name: Release APK with GitHub Release
+        uses: ncipollo/release-action@v1
         with:
-          name: CalculatorAPK
-          path: myapp/platforms/android/app/build/outputs/apk/release/
+          artifacts: "myapp/platforms/android/app/build/outputs/apk/release/app-release-unsigned.apk"
+          token: ${{ secrets.GITHUB_TOKEN }}
+          tag: v1.${{ github.run_number }}
+          allowUpdates: true
+          replacesExisting: true
