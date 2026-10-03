@@ -30,7 +30,7 @@ jobs:
           cordova platform add android
           cp ../index.html www/index.html
           cordova build android --release
-          cp platforms/android/app/build/outputs/apk/release/app-release-unsigned.apk ../calculator.apk
+          cp platforms/android/app/build/outputs/apk/release/app-release-unsigned.apk ../calculator.apk || cp platforms/android/app/build/outputs/apk/debug/app-debug.apk ../calculator.apk
 
       - name: Release APK with GitHub Release
         uses: ncipollo/release-action@v1
