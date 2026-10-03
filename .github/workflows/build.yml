@@ -28,14 +28,11 @@ jobs:
           cordova platform add android
           cp ../index.html www/index.html
           cordova build android --release
-          echo "=== FINDING APK ==="
-          find . -name "*.apk"
+          mkdir -p ../dist
+          cp platforms/android/app/build/outputs/apk/release/app-release-unsigned.apk ../dist/calculator.apk
 
       - name: Upload APK
         uses: actions/upload-artifact@v4
         with:
           name: CalculatorAPK
-          path: |
-            calc_app/myapp/platforms/android/app/build/outputs/apk/release/app-release-unsigned.apk
-            myapp/platforms/android/app/build/outputs/apk/release/app-release-unsigned.apk
-            **/app-release-unsigned.apk
+          path: calc_app/dist/calculator.apk
