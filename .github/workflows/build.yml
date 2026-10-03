@@ -29,7 +29,7 @@ jobs:
           cd myapp
           cordova platform add android@10.1.2
           cp ../index.html www/index.html
-          # Fix gradle version in build.gradle or gradle-wrapper.properties if needed
+          mkdir -p platforms/android/gradle/wrapper/
           echo "distributionUrl=https\://services.gradle.org/distributions/gradle-7.5-bin.zip" > platforms/android/gradle/wrapper/gradle-wrapper.properties
           cordova build android --release
           cp platforms/android/app/build/outputs/apk/release/app-release-unsigned.apk ../calculator.apk
